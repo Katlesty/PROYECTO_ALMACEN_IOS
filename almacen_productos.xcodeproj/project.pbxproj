@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0020332CDD516C0018B8B9 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = AB0020322CDD516C0018B8B9 /* DGCharts */; };
+		AB0020352CDD516C0018B8B9 /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = AB0020342CDD516C0018B8B9 /* DGChartsDynamic */; };
 		ABBBFC922CCE8DE200CFFEFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBBFC912CCE8DE200CFFEFD /* AppDelegate.swift */; };
 		ABBBFC942CCE8DE200CFFEFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBBFC932CCE8DE200CFFEFD /* SceneDelegate.swift */; };
 		ABBBFC962CCE8DE200CFFEFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBBFC952CCE8DE200CFFEFD /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB0020352CDD516C0018B8B9 /* DGChartsDynamic in Frameworks */,
+				AB0020332CDD516C0018B8B9 /* DGCharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +111,10 @@
 			dependencies = (
 			);
 			name = almacen_productos;
+			packageProductDependencies = (
+				AB0020322CDD516C0018B8B9 /* DGCharts */,
+				AB0020342CDD516C0018B8B9 /* DGChartsDynamic */,
+			);
 			productName = almacen_productos;
 			productReference = ABBBFC8E2CCE8DE200CFFEFD /* almacen_productos.app */;
 			productType = "com.apple.product-type.application";
@@ -135,6 +143,9 @@
 				Base,
 			);
 			mainGroup = ABBBFC852CCE8DE200CFFEFD;
+			packageReferences = (
+				AB0020312CDD516C0018B8B9 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = ABBBFC8F2CCE8DE200CFFEFD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -393,6 +404,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AB0020312CDD516C0018B8B9 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ChartsOrg/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AB0020322CDD516C0018B8B9 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB0020312CDD516C0018B8B9 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		AB0020342CDD516C0018B8B9 /* DGChartsDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB0020312CDD516C0018B8B9 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGChartsDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		ABBBFC9A2CCE8DE200CFFEFD /* almacen_productos.xcdatamodeld */ = {

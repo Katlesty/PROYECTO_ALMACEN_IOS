@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y2n-Jn-avB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y2n-Jn-avB">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -193,9 +193,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Informe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgC-0H-nq1">
-                                <rect key="frame" x="100" y="228" width="59" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Informe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgC-0H-nq1">
+                                <rect key="frame" x="30" y="170" width="333" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -258,12 +257,15 @@
                         <viewLayoutGuide key="safeArea" id="Azn-ZD-bKK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Azn-ZD-bKK" firstAttribute="trailing" secondItem="BgC-0H-nq1" secondAttribute="trailing" constant="30" id="AYb-VU-aN5"/>
                             <constraint firstItem="hJ0-YJ-4Cd" firstAttribute="top" secondItem="Azn-ZD-bKK" secondAttribute="top" constant="273" id="LY0-4r-unC"/>
                             <constraint firstItem="Azn-ZD-bKK" firstAttribute="trailing" secondItem="wS2-9T-K9i" secondAttribute="trailing" constant="30" id="McA-Xh-aMH"/>
+                            <constraint firstItem="BgC-0H-nq1" firstAttribute="top" secondItem="wS2-9T-K9i" secondAttribute="bottom" constant="30" id="QXQ-KS-BRk"/>
                             <constraint firstItem="wS2-9T-K9i" firstAttribute="top" secondItem="Azn-ZD-bKK" secondAttribute="top" constant="50" id="f65-GT-TOK"/>
                             <constraint firstItem="wS2-9T-K9i" firstAttribute="leading" secondItem="Azn-ZD-bKK" secondAttribute="leading" constant="30" id="fyb-CR-4LO"/>
                             <constraint firstItem="hJ0-YJ-4Cd" firstAttribute="leading" secondItem="jvN-ZI-1lI" secondAttribute="trailing" constant="40.333333333333371" id="gaV-yZ-Hkw"/>
                             <constraint firstItem="hJ0-YJ-4Cd" firstAttribute="top" secondItem="jvN-ZI-1lI" secondAttribute="top" id="meE-D0-PeJ"/>
+                            <constraint firstItem="BgC-0H-nq1" firstAttribute="leading" secondItem="Azn-ZD-bKK" secondAttribute="leading" constant="30" id="nR3-lP-Xi3"/>
                             <constraint firstItem="Azn-ZD-bKK" firstAttribute="trailing" secondItem="hJ0-YJ-4Cd" secondAttribute="trailing" constant="75" id="vJS-PK-BaZ"/>
                         </constraints>
                     </view>
