@@ -1,18 +1,20 @@
 import UIKit
 import SwiftUI
 
-class ProductosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProductosViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet var searchButton: UISearchBar!
     @IBOutlet var tableView: UITableView!
     
     var productos: [Producto] = []
+    var productosFiltrados: [Producto] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
+        searchButton.delegate = self
         
         // DISEÑO
         
@@ -71,13 +73,23 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do {
             productos = try context.fetch(Producto.fetchRequest()) as! [Producto]
+            productosFiltrados = productos
         } catch {
             print("Error al leer entidad Producto de CoreData")
         }
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            productosFiltrados = productos
+        } else {
+            productosFiltrados = productos.filter { $0.nombre?.localizedCaseInsensitiveContains(searchText) ?? false }
+        }
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return productos.count
+        return productosFiltrados.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,39 +136,10 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let producto = productos[indexPath.row]
-            
-            let alertController = UIAlertController(title: "Eliminar Producto", message: "¿Estás seguro de que deseas eliminar este producto?", preferredStyle: .alert)
-                
-            let eliminarAction = UIAlertAction(title: "Eliminar", style: .destructive) { _ in
-                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                    
-                context.delete(producto)
-                do {
-                    try context.save()
-                } catch {
-                    print("Error al eliminar el producto de Core Data: \(error)")
-                }
-                    
-                self.productos.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                }
-                
-            let cancelarAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-                
-                alertController.addAction(eliminarAction)
-                alertController.addAction(cancelarAction)
-                
-                present(alertController, animated: true, completion: nil)
-            }
-    }
-    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let botonEliminar = UITableViewRowAction(style: .normal, title: "Eliminar") { (action, indexPath) in
             
-            let productoAEliminar = self.productos[indexPath.row]
+            let productoAEliminar = self.productosFiltrados[indexPath.row]
             
             let alertController = UIAlertController(title: "Eliminar Producto", message: "¿Estás seguro de que deseas eliminar este producto?", preferredStyle: .alert)
             
@@ -171,7 +154,13 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
                     print("Error al eliminar el producto de Core Data: \(error)")
                 }
                         
-                self.productos.remove(at: indexPath.row)
+                // Primero elimina el producto de ambos arreglos
+                if let indexInProductos = self.productos.firstIndex(of: productoAEliminar) {
+                    self.productos.remove(at: indexInProductos)
+                }
+                self.productosFiltrados.remove(at: indexPath.row)
+                
+                // Ahora actualiza la tabla
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
             
@@ -185,7 +174,7 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
         botonEliminar.backgroundColor = UIColor.red
         
         let botonEditar = UITableViewRowAction(style: .normal, title: "Editar") { (action, indexPath) in
-            self.performSegue(withIdentifier: "segueEditar", sender: self.productos[indexPath.row])
+            self.performSegue(withIdentifier: "segueEditar", sender: self.productosFiltrados[indexPath.row])
         }
         botonEditar.backgroundColor = UIColor.blue
         
@@ -193,8 +182,6 @@ class ProductosViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
 
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let producto = productos[indexPath.row]
         performSegue(withIdentifier: "segueDetalle", sender: producto)

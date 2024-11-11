@@ -13,6 +13,7 @@ class AgregarProductoViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet var imageView: UIImageView!
     
     var anteriorVC = ProductosViewController()
+    var dashboard = DashboardViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
